@@ -1,59 +1,61 @@
-import { footerData } from "../data/footer";
-import { DribbbleIcon, LinkedinIcon, TwitterIcon, YoutubeIcon } from "lucide-react";
+import { LinkedinIcon } from "lucide-react";
 import { motion } from "motion/react";
-import type { IFooterLink } from "../types";
 import { Link } from "react-router-dom";
 
 export default function Footer() {
     return (
-        <footer className="flex flex-wrap justify-center md:justify-between overflow-hidden gap-10 md:gap-20 mt-40 py-6 px-6 md:px-16 lg:px-24 xl:px-32 text-[13px] text-gray-500">
-            <motion.div className="flex flex-wrap items-start gap-10 md:gap-35"
-                initial={{ x: -150, opacity: 0 }}
-                whileInView={{ x: 0, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ type: "spring", stiffness: 280, damping: 70, mass: 1 }}
-            >
-                <a href="https://prebuiltui.com?utm_source=pixels">
-                    <img className="size-8 aspect-square" src="/assets/footer-logo.svg" alt="footer logo" width={32} height={32} />
-                </a>
-                {footerData.map((section, index) => (
-                    <div key={index}>
-                        <p className="text-slate-100 font-semibold">{section.title}</p>
-                        <ul className="mt-2 space-y-2">
-                            {section.links.map((link: IFooterLink, index: number) => (
-                                <li key={index}>
-                                    <Link to={link.href} className="hover:text-pink-600 transition">
-                                        {link.name}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                ))}
-            </motion.div>
-            <motion.div className="flex flex-col max-md:items-center max-md:text-center gap-2 items-end"
-                initial={{ x: 150, opacity: 0 }}
-                whileInView={{ x: 0, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ type: "spring", stiffness: 280, damping: 70, mass: 1 }}
-            >
-                <p className="max-w-60">Making every customer feel valued—no matter the size of your audience.</p>
-                <div className="flex items-center gap-4 mt-3">
-                    <a href="https://dribbble.com/prebuiltui" target="_blank" rel="noreferrer">
-                        <DribbbleIcon className="size-5 hover:text-pink-500" />
-                    </a>
-                    <a href="https://www.linkedin.com/company/prebuiltui" target="_blank" rel="noreferrer">
-                        <LinkedinIcon className="size-5 hover:text-pink-500" />
-                    </a>
-                    <a href="https://x.com/prebuiltui" target="_blank" rel="noreferrer">
-                        <TwitterIcon className="size-5 hover:text-pink-500" />
-                    </a>
-                    <a href="https://www.youtube.com/@prebuiltui" target="_blank" rel="noreferrer">
-                        <YoutubeIcon className="size-6 hover:text-pink-500" />
-                    </a>
+        <footer className="mt-20 py-6 px-6 md:px-16 lg:px-24 xl:px-32 border-t border-slate-800/50">
+            <div className="max-w-7xl mx-auto">
+                {/* Main Footer Content */}
+                <div className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-8">
+                    {/* Left: Logo + Brand Name */}
+                    <motion.div
+                        className="flex items-center gap-3"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5 }}
+                    >
+                        <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition group">
+                            <img className="size-8 aspect-square" src="/assets/logo_two.png" alt="Thumbly logo" width={32} height={32} />
+                            <span className="text-xl font-bold text-white group-hover:text-pink-500 transition">thumbly</span>
+                        </Link>
+                    </motion.div>
+
+                    {/* Center: Quote */}
+                    <motion.div
+                        className="flex-1 text-center"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.1, duration: 0.5 }}
+                    >
+                        <p className="text-sm text-slate-400 italic max-w-md mx-auto">
+                            "Create thumbnails that stop the scroll and start the click."
+                        </p>
+                    </motion.div>
+
+                    {/* Right: LinkedIn + Copyright */}
+                    <motion.div
+                        className="flex items-center gap-4"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2, duration: 0.5 }}
+                    >
+                        <a 
+                            href="https://www.linkedin.com/in/shubham-kumar-77a1b1334/" 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className="hover:text-pink-500 transition-colors" 
+                            aria-label="LinkedIn Profile"
+                        >
+                            <LinkedinIcon className="size-5" />
+                        </a>
+                        <p className="text-xs text-slate-500">© {new Date().getFullYear()} Shubhzx</p>
+                    </motion.div>
                 </div>
-                <p className="mt-3 text-center">&copy; {new Date().getFullYear()} <a href="https://prebuiltui.com?utm_source=pixels">PrebuiltUI</a></p>
-            </motion.div>
+            </div>
         </footer>
     );
 }

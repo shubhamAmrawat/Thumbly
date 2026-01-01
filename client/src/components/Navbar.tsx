@@ -1,13 +1,11 @@
 import { MenuIcon, XIcon } from "lucide-react";
 import { useState } from "react";
 import { motion } from "motion/react";
-import { navlinks } from "../data/navlinks";
-import type { INavLink } from "../types";
-import { NavLink } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
-
+    const navigate = useNavigate(); 
     return (
         <>
             <motion.nav className="fixed top-5 z-50 flex items-center justify-between w-full max-w-[1440px] py-4 px-6 md:px-16 lg:px-24 xl:px-6 backdrop-blur-lg bg-white/5 border border-white/10 rounded-2xl mx-auto left-1/2 -translate-x-1/2 shadow-lg shadow-black/20" 
@@ -16,21 +14,34 @@ export default function Navbar() {
                 viewport={{ once: true }}
                 transition={{ type: "spring", stiffness: 250, damping: 70, mass: 1 }}
             >
-                <a href="/" className="flex items-center gap-2 flex-shrink-0">
-                    <img className="size-8 aspect-square" src="/assets/heroIcon.png" alt="logo" />
-                    <span className="text-2xl font-bold">thumbly</span>
-                </a>
+                <Link to="/" className="flex items-center-safe  gap-2 flex-shrink-0">
+                    <img className="size-10 aspect-square" src="/assets/logo_two.png" alt="logo" />
+                    <span className="text-xl font-bold">thumbly</span>
+                </Link>
 
                 <div className="hidden md:flex items-center gap-8 transition duration-500 flex-1 justify-center">
-                    {navlinks.map((link: INavLink) => (
+                    
+                    <Link to="/" className="hover:text-pink-500 transition">
+                        Home
+                    </Link>
+                    <Link to="/generate" className="hover:text-pink-500 transition">
+                        Generate
+                    </Link>
+                    <Link to="/my-generation" className="hover:text-pink-500 transition">
+                        My Generations
+                    </Link>
+                    <Link to="#" className="hover:text-pink-500 transition">
+                       Contact
+                    </Link>
+                    {/* {navlinks.map((link: INavLink) => (
                         <NavLink key={link.name} to={link.href} className="hover:text-pink-500 transition">
                             {link.name}
                         </NavLink>
-                    ))}
+                    ))} */}
                 </div>
 
-                <button className="hidden md:block px-6 py-2.5 bg-pink-600 hover:bg-pink-700 active:scale-95 transition-all rounded-full flex-shrink-0">
-                    Start free trial
+                <button className="hidden md:block px-6 py-2.5 bg-pink-600 hover:bg-pink-700 active:scale-95 transition-all rounded-full flex-shrink-0" onClick={() => navigate("/signup")}>
+                    Get Started
                 </button>
                 <button onClick={() => setIsOpen(true)} className="md:hidden" aria-label="Open menu">
                     <MenuIcon size={26} className="active:scale-90 transition" />
@@ -38,11 +49,21 @@ export default function Navbar() {
             </motion.nav>
 
             <div className={`fixed inset-0 z-100 bg-black/40 backdrop-blur flex flex-col items-center justify-center text-lg gap-8 md:hidden transition-transform duration-400 ${isOpen ? "translate-x-0" : "-translate-x-full"}`}>
-                {navlinks.map((link: INavLink) => (
-                    <NavLink key={link.name} to={link.href} onClick={() => setIsOpen(false)}>
-                        {link.name}
-                    </NavLink>
-                ))}
+                <Link  onClick={() => setIsOpen(false)}  to="/" >
+                    Home
+                </Link>
+                <Link  onClick={() => setIsOpen(false)}  to="/generate" >
+                    Generate
+                </Link>
+                <Link  onClick={() => setIsOpen(false)}  to="/my-generation" >
+                    My Generations
+                </Link>
+                <Link  onClick={() => setIsOpen(false)}  to="#" >
+                    Contact
+                </Link>
+                <Link  onClick={() => setIsOpen(false)}  to="/login">
+                    Login
+                </Link>
                 <button onClick={() => setIsOpen(false)} className="active:ring-3 active:ring-white aspect-square size-10 p-1 items-center justify-center bg-pink-600 hover:bg-pink-700 transition text-white rounded-md flex" aria-label="Close menu">
                     <XIcon />
                 </button>

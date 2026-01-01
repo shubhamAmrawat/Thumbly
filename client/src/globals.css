@@ -34,3 +34,33 @@ button {
         background-position: 0% 50%;
     }
 }
+
+/* Custom Scrollbar Styles */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #db2777 #1e293b;
+}
+
+*::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #1e293b;
+    border-radius: 4px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: #db2777;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background: #ec4899;
+}
+
+*::-webkit-scrollbar-corner {
+    background: #1e293b;
+}
